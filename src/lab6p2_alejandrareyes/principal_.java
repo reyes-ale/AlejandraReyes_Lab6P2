@@ -4,6 +4,7 @@
  */
 package lab6p2_alejandrareyes;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -51,8 +52,8 @@ public class principal_ extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         bt_agregarjugador = new javax.swing.JButton();
         tf_nombrejugador = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jspi_edad = new javax.swing.JSpinner();
+        cb_posicion = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jd_transferencias = new javax.swing.JDialog();
@@ -62,7 +63,7 @@ public class principal_ extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jl_jugadores = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtree_equipos = new javax.swing.JTree();
         bt_transferir = new javax.swing.JButton();
@@ -217,9 +218,9 @@ public class principal_ extends javax.swing.JFrame {
             }
         });
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(15, 15, 45, 1));
+        jspi_edad.setModel(new javax.swing.SpinnerNumberModel(15, 15, 45, 1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Portero", "Defensa", "Mediocampista", "Delantero" }));
+        cb_posicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Portero", "Defensa", "Mediocampista", "Delantero" }));
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab6p2_alejandrareyes/boroa_futbol (1).jpg"))); // NOI18N
 
@@ -238,8 +239,8 @@ public class principal_ extends javax.swing.JFrame {
                         .addGap(88, 88, 88)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tf_nombrejugador)
-                            .addComponent(jSpinner1)
-                            .addComponent(jComboBox1, 0, 186, Short.MAX_VALUE)))
+                            .addComponent(jspi_edad)
+                            .addComponent(cb_posicion, 0, 186, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(235, 235, 235)
                         .addComponent(bt_agregarjugador)))
@@ -268,11 +269,11 @@ public class principal_ extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jspi_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_posicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addComponent(bt_agregarjugador)
                 .addContainerGap(98, Short.MAX_VALUE))
@@ -317,7 +318,8 @@ public class principal_ extends javax.swing.JFrame {
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab6p2_alejandrareyes/boroa_futbol (1).jpg"))); // NOI18N
 
-        jScrollPane1.setViewportView(jList1);
+        jl_jugadores.setModel(new DefaultListModel());
+        jScrollPane1.setViewportView(jl_jugadores);
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Equipos");
         jtree_equipos.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
@@ -401,7 +403,7 @@ public class principal_ extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jmi_eliminar.setText("jMenuItem1");
+        jmi_eliminar.setText("Eliminar");
         jmi_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmi_eliminarActionPerformed(evt);
@@ -579,7 +581,15 @@ public class principal_ extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_transferenciaActionPerformed
 
     private void bt_agregarjugadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_agregarjugadorMouseClicked
-       
+       //agregar bt
+        DefaultListModel listajugadores = (DefaultListModel) jl_jugadores.getModel();
+        listajugadores.addElement(new Jugador(tf_nombrejugador.getText(), (String) cb_posicion.getSelectedItem(), (Integer)jspi_edad.getValue()));
+        
+        jl_jugadores.setModel(listajugadores);
+        tf_nombrejugador.setText("");
+        cb_posicion.setSelectedIndex(0);
+        jspi_edad.setValue(15);
+        JOptionPane.showMessageDialog(jd_crearjugador, "Jugador creado exitosamente");
     }//GEN-LAST:event_bt_agregarjugadorMouseClicked
 
     private void jmi_crearequiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_crearequiposActionPerformed
@@ -623,7 +633,7 @@ public class principal_ extends javax.swing.JFrame {
         tf_estadioequipo.setText("");
         tf_paisequipo.setText("");
         
-        JOptionPane.showMessageDialog(jd_crearequipo, "Equipo agregado exitosamente");
+        JOptionPane.showMessageDialog(jd_crearequipo, "Equipo creado exitosamente");
 
     }//GEN-LAST:event_bt_agrearequipoMouseClicked
 
@@ -652,6 +662,9 @@ public class principal_ extends javax.swing.JFrame {
         //click derecho arbol
         
         if (evt.getButton() == 3){
+            int row = jtree_equipos.getClosestRowForLocation(evt.getX(), evt.getY());
+            jtree_equipos.setSelectionRow(row);
+            
             Object nodo = jtree_equipos.getSelectionPath().getLastPathComponent();
             nodo_precionado = (DefaultMutableTreeNode) nodo;
             
@@ -715,7 +728,7 @@ DefaultMutableTreeNode nodo_precionado;
     private javax.swing.JButton bt_crearjugadores;
     private javax.swing.JButton bt_transferencia;
     private javax.swing.JButton bt_transferir;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cb_posicion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -734,7 +747,6 @@ DefaultMutableTreeNode nodo_precionado;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -744,15 +756,16 @@ DefaultMutableTreeNode nodo_precionado;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JDialog jd_crearequipo;
     private javax.swing.JDialog jd_crearjugador;
     private javax.swing.JDialog jd_transferencias;
+    private javax.swing.JList<String> jl_jugadores;
     private javax.swing.JMenuItem jmi_crearequipos;
     private javax.swing.JMenuItem jmi_crearjugadores;
     private javax.swing.JMenuItem jmi_eliminar;
     private javax.swing.JMenuItem jmi_transferencias;
+    private javax.swing.JSpinner jspi_edad;
     private javax.swing.JTree jtree_equipos;
     private javax.swing.JPopupMenu popup_equipos;
     private javax.swing.JTextField tf_ciudadequipo;
