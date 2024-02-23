@@ -611,7 +611,7 @@ public class principal_ extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_crearjugadoresActionPerformed
 
     private void bt_transferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_transferenciaActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_bt_transferenciaActionPerformed
 
     private void bt_agregarjugadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_agregarjugadorMouseClicked
