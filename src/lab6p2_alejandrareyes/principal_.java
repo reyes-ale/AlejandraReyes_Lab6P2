@@ -4,6 +4,8 @@
  */
 package lab6p2_alejandrareyes;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -69,6 +71,9 @@ public class principal_ extends javax.swing.JFrame {
         bt_transferir = new javax.swing.JButton();
         popup_equipos = new javax.swing.JPopupMenu();
         jmi_eliminar = new javax.swing.JMenuItem();
+        popup_jugadores = new javax.swing.JPopupMenu();
+        jmi_modificar = new javax.swing.JMenuItem();
+        jm_eliminarjugador = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jToolBar1 = new javax.swing.JToolBar();
@@ -319,6 +324,11 @@ public class principal_ extends javax.swing.JFrame {
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab6p2_alejandrareyes/boroa_futbol (1).jpg"))); // NOI18N
 
         jl_jugadores.setModel(new DefaultListModel());
+        jl_jugadores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_jugadoresMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jl_jugadores);
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Equipos");
@@ -410,6 +420,22 @@ public class principal_ extends javax.swing.JFrame {
             }
         });
         popup_equipos.add(jmi_eliminar);
+
+        jmi_modificar.setText("Modificar");
+        jmi_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_modificarActionPerformed(evt);
+            }
+        });
+        popup_jugadores.add(jmi_modificar);
+
+        jm_eliminarjugador.setText("Eliminar\n");
+        jm_eliminarjugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_eliminarjugadorActionPerformed(evt);
+            }
+        });
+        popup_jugadores.add(jm_eliminarjugador);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -509,6 +535,9 @@ public class principal_ extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addContainerGap(48, Short.MAX_VALUE))
         );
+
+        jMenuBar1.setBackground(new java.awt.Color(0, 0, 0));
+        jMenuBar1.setForeground(new java.awt.Color(0, 0, 0));
 
         jMenu1.setText("Opciones");
 
@@ -683,6 +712,44 @@ public class principal_ extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(jd_transferencias, "Equipo eliminado exitosamente");
     }//GEN-LAST:event_jmi_eliminarActionPerformed
 
+    private void jl_jugadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_jugadoresMouseClicked
+        
+          if (jl_jugadores.getSelectedIndex() >= 0) {
+            if (evt.isMetaDown()) {
+                popup_jugadores.show(evt.getComponent(), evt.getX(), evt.getY());
+                
+            }
+        }
+        
+    }//GEN-LAST:event_jl_jugadoresMouseClicked
+
+    private void jmi_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_modificarActionPerformed
+        // modificar jugador
+        
+        String msg = JOptionPane.showInputDialog("Nuevo nombre: " );
+        int msg2 = Integer.parseInt(JOptionPane.showInputDialog("Nueva edad: " ));
+        
+        while (nombretieneNums(msg)==false){
+            JOptionPane.showMessageDialog(jd_transferencias, "El nombre no puede contener numeros");
+            msg = JOptionPane.showInputDialog("Nuevo nombre: " );
+        }
+        
+        while (msg2<15 || msg2>45){
+            JOptionPane.showMessageDialog(jd_transferencias, "La edad no puede ser menor de 15 o mayor de 45");
+            msg2 = Integer.parseInt(JOptionPane.showInputDialog("Nueva edad: " ));
+        }
+        
+        
+        JOptionPane.showInputDialog("Nueva");
+        
+        
+    }//GEN-LAST:event_jmi_modificarActionPerformed
+
+    private void jm_eliminarjugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_eliminarjugadorActionPerformed
+        //eliminar jugador
+        
+    }//GEN-LAST:event_jm_eliminarjugadorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -718,6 +785,23 @@ public class principal_ extends javax.swing.JFrame {
         });
     }
     
+    public static boolean nombretieneNums (String cad){
+        String regex = "^[a-z A-Z]";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(cad);
+       return matcher.matches();
+    }
+    
+    
+    public static boolean edadtieneLetras (String cad){
+        String regex = "^[1-4] + [1-5]";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(cad);
+       return matcher.matches();
+    }
+    
+    
+  
     
   Equipo equipo;  
 DefaultMutableTreeNode nodo_precionado;
@@ -761,13 +845,16 @@ DefaultMutableTreeNode nodo_precionado;
     private javax.swing.JDialog jd_crearjugador;
     private javax.swing.JDialog jd_transferencias;
     private javax.swing.JList<String> jl_jugadores;
+    private javax.swing.JMenuItem jm_eliminarjugador;
     private javax.swing.JMenuItem jmi_crearequipos;
     private javax.swing.JMenuItem jmi_crearjugadores;
     private javax.swing.JMenuItem jmi_eliminar;
+    private javax.swing.JMenuItem jmi_modificar;
     private javax.swing.JMenuItem jmi_transferencias;
     private javax.swing.JSpinner jspi_edad;
     private javax.swing.JTree jtree_equipos;
     private javax.swing.JPopupMenu popup_equipos;
+    private javax.swing.JPopupMenu popup_jugadores;
     private javax.swing.JTextField tf_ciudadequipo;
     private javax.swing.JTextField tf_estadioequipo;
     private javax.swing.JTextField tf_nombreequipo;
