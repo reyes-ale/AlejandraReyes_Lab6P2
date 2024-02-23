@@ -344,6 +344,11 @@ public class principal_ extends javax.swing.JFrame {
         bt_transferir.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         bt_transferir.setForeground(new java.awt.Color(0, 0, 0));
         bt_transferir.setText("Transferir -->");
+        bt_transferir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_transferirMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -764,6 +769,30 @@ public class principal_ extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jm_eliminarjugadorActionPerformed
+
+    private void bt_transferirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_transferirMouseClicked
+        if (jl_jugadores.getSelectedIndex() >= 0 ){
+            DefaultTreeModel arbolequipos = (DefaultTreeModel) jtree_equipos.getModel();
+            DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) arbolequipos.getRoot();
+           
+            DefaultListModel listajugadores = (DefaultListModel) jl_jugadores.getModel();
+            
+            String nombre = ((Jugador) listajugadores.get(jl_jugadores.getSelectedIndex())).getNombre();
+            String posicion = ((Jugador) listajugadores.get(jl_jugadores.getSelectedIndex())).getPosicion();
+            int edad = ((Jugador) listajugadores.get(jl_jugadores.getSelectedIndex())).getEdad();
+                      
+            for (int i = 0; i < raiz.getChildCount(); i++) {
+                if (raiz.getChildAt(i).toString().equals(posicion)) {
+                    //DefaultMutableTreeNode p = new DefaultMutableTreeNode(new Persona(nombre,edad, nacionalidad));
+                    //((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
+                } 
+            }
+            
+            
+            
+            
+        }
+    }//GEN-LAST:event_bt_transferirMouseClicked
 
     /**
      * @param args the command line arguments
