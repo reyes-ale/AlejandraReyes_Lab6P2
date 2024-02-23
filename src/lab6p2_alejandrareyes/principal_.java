@@ -717,7 +717,6 @@ public class principal_ extends javax.swing.JFrame {
           if (jl_jugadores.getSelectedIndex() >= 0) {
             if (evt.isMetaDown()) {
                 popup_jugadores.show(evt.getComponent(), evt.getX(), evt.getY());
-                
             }
         }
         
@@ -725,28 +724,44 @@ public class principal_ extends javax.swing.JFrame {
 
     private void jmi_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_modificarActionPerformed
         // modificar jugador
+        if (jl_jugadores.getSelectedIndex() >= 0) {
+            DefaultListModel listajugadores = (DefaultListModel) jl_jugadores.getModel();
+            String msg = JOptionPane.showInputDialog("Nuevo nombre: " );
+        String msg2 = JOptionPane.showInputDialog("Nueva edad: " );
+        int msg2int = Integer.parseInt(msg2);
         
-        String msg = JOptionPane.showInputDialog("Nuevo nombre: " );
-        int msg2 = Integer.parseInt(JOptionPane.showInputDialog("Nueva edad: " ));
+        
         
         while (nombretieneNums(msg)==false){
             JOptionPane.showMessageDialog(jd_transferencias, "El nombre no puede contener numeros");
             msg = JOptionPane.showInputDialog("Nuevo nombre: " );
         }
         
-        while (msg2<15 || msg2>45){
+        while (msg2int<15 || msg2int>45 && edadtieneLetras(msg2)){
             JOptionPane.showMessageDialog(jd_transferencias, "La edad no puede ser menor de 15 o mayor de 45");
-            msg2 = Integer.parseInt(JOptionPane.showInputDialog("Nueva edad: " ));
+            msg2 = JOptionPane.showInputDialog("Nueva edad: " );
+            msg2int = Integer.parseInt(msg2);
         }
         
         
         JOptionPane.showInputDialog("Nueva");
+            ((Jugador) listajugadores.get(jl_jugadores.getSelectedIndex()) ). setNombre(JOptionPane.showInputDialog("nombre"));
+            jl_jugadores.setModel(listajugadores);
+
+        }
+        
         
         
     }//GEN-LAST:event_jmi_modificarActionPerformed
 
     private void jm_eliminarjugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_eliminarjugadorActionPerformed
         //eliminar jugador
+        
+        if (jl_jugadores.getSelectedIndex() >= 0) {
+            DefaultListModel listajugadores = (DefaultListModel) jl_jugadores.getModel();
+           //((Jugador) listajugadores.get(jl_jugadores.getSelectedIndex())).remove);
+            jl_jugadores.setModel(listajugadores);
+        }
         
     }//GEN-LAST:event_jm_eliminarjugadorActionPerformed
 
@@ -800,7 +815,7 @@ public class principal_ extends javax.swing.JFrame {
        return matcher.matches();
     }
     
-    
+    // falta validaciones, falta eliminar y modificar jugadores, 
   
     
   Equipo equipo;  
