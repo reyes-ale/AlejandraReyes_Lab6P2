@@ -55,7 +55,7 @@ public class Equipo {
 
     @Override
     public String toString() {
-        return "Equipo{" + "nombre=" + nombre + ", pais=" + pais + ", ciudad=" + ciudad + ", estadio=" + estadio + '}';
+        return nombre;
     }
     
     
