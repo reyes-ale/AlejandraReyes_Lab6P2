@@ -733,7 +733,7 @@ public class principal_ extends javax.swing.JFrame {
             DefaultListModel listajugadores = (DefaultListModel) jl_jugadores.getModel();
             String msg = JOptionPane.showInputDialog(jd_transferencias, "Nuevo nombre: ");
             
-            while (nombretieneNums(msg) == false) {
+            while (nombretienesololetras(msg) == false) {
                 JOptionPane.showMessageDialog(jd_transferencias, "El nombre no puede contener numeros");
                 msg = JOptionPane.showInputDialog(jd_transferencias, "Nuevo nombre: ");
             }
@@ -743,17 +743,29 @@ public class principal_ extends javax.swing.JFrame {
             String msg2 = JOptionPane.showInputDialog(jd_transferencias, "Nueva edad: ");
             int msg2int = Integer.parseInt(msg2);
             
-            while (msg2int < 15 || msg2int > 45) {
+            
+            if (edadtienesolonumeros(msg)==true){
+                while (msg2int < 15 || msg2int > 45) {
                 JOptionPane.showMessageDialog(jd_transferencias, "La edad no puede ser menor de 15 o mayor de 45");
-                msg2 = JOptionPane.showInputDialog("Nueva edad: ");
+                msg2 = JOptionPane.showInputDialog(jd_transferencias,"Nueva edad: ");
                 msg2int = Integer.parseInt(msg2);
+            }
+            }
+            else if (edadtienesolonumeros(msg2)==false){
+                while (edadtienesolonumeros(msg2)==false) {
+                JOptionPane.showMessageDialog(jd_transferencias, "La edad no puede contener letras");
+                msg2 = JOptionPane.showInputDialog(jd_transferencias,"Nueva edad: ");
+                
+            }
+                msg2int = Integer.parseInt(msg2);
+                while (msg2int < 15 || msg2int > 45) {
+                    JOptionPane.showMessageDialog(jd_transferencias, "La edad no puede ser menor de 15 o mayor de 45");
+                    msg2 = JOptionPane.showInputDialog(jd_transferencias, "Nueva edad: ");
+                    msg2int = Integer.parseInt(msg2);
+            }
             }
             
-            while (edadtieneLetras(msg2)) {
-                JOptionPane.showMessageDialog(jd_transferencias, "La edad no puede ser menor de 15 o mayor de 45");
-                msg2 = JOptionPane.showInputDialog("Nueva edad: ");
-                msg2int = Integer.parseInt(msg2);
-            }
+           
             
             
             jl_jugadores.setModel(listajugadores);
@@ -791,23 +803,20 @@ public class principal_ extends javax.swing.JFrame {
                
             
             int row = jtree_equipos.getClosestRowForLocation(evt.getX(), evt.getY());jtree_equipos.setSelectionRow(row);
-            Object v1 = jtree_equipos.getSelectionPath().getLastPathComponent();
-            nodo_precionado = (DefaultMutableTreeNode) v1;
+            Object juga = jtree_equipos.getSelectionPath().getLastPathComponent();
+            nodo_precionado = (DefaultMutableTreeNode) juga;
+            
             if (nodo_precionado.getUserObject() instanceof Equipo) {
-               equipo = (Equipo) nodo_precionado.getUserObject();
-          
-        }
-            int cont =0;
+               equipo = (Equipo) nodo_precionado.getUserObject();//yaeta
+                int cont =0;
             for (int i = 0; i < raiz.getChildCount(); i++) {
                 DefaultMutableTreeNode hijo = (DefaultMutableTreeNode)raiz.getChildAt(i);
                 for (int j = 0; j < hijo.getChildCount(); j++) {
-                    
-                    if (hijo.getChildAt(i).toString().equals(((Equipo)nodo_precionado.getUserObject()).getNombre())) {
+                    if (hijo.getChildAt(j).toString().equals(equipo.getNombre())) {
                     DefaultMutableTreeNode jugadortabla = new DefaultMutableTreeNode(new Jugador(nombre, posicion, edad));
                     ((DefaultMutableTreeNode) hijo.getChildAt(i)).add(jugadortabla);
                     cont++;
                 } 
-                  
                 }
                 
             }
@@ -820,6 +829,13 @@ public class principal_ extends javax.swing.JFrame {
             }
             
             arbolequipos.reload();
+            }
+            else {
+                 JOptionPane.showMessageDialog(jd_transferencias, "el nodo que selecciono no es un equipo");
+            }
+            
+            
+           
             
             
             
@@ -864,7 +880,7 @@ public class principal_ extends javax.swing.JFrame {
         });
     }
     
-    public static boolean nombretieneNums (String cad){
+    public static boolean nombretienesololetras (String cad){
         String regex = "[a-zA-Z]+";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(cad);
@@ -872,7 +888,7 @@ public class principal_ extends javax.swing.JFrame {
     }
     
     
-    public static boolean edadtieneLetras (String cad){
+    public static boolean edadtienesolonumeros (String cad){
         String regex = "[1-4][1-5]";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(cad);
