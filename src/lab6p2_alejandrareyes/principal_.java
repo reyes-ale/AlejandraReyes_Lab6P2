@@ -307,18 +307,18 @@ public class principal_ extends javax.swing.JFrame {
                     .addContainerGap(206, Short.MAX_VALUE)))
         );
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBackground(new java.awt.Color(204, 204, 255));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Transferencias");
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setForeground(new java.awt.Color(102, 0, 102));
         jLabel14.setText("Jugadores");
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setForeground(new java.awt.Color(102, 0, 102));
         jLabel15.setText("Equipos");
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab6p2_alejandrareyes/boroa_futbol (1).jpg"))); // NOI18N
@@ -340,9 +340,9 @@ public class principal_ extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jtree_equipos);
 
-        bt_transferir.setBackground(new java.awt.Color(255, 255, 51));
+        bt_transferir.setBackground(new java.awt.Color(102, 0, 102));
         bt_transferir.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        bt_transferir.setForeground(new java.awt.Color(0, 0, 0));
+        bt_transferir.setForeground(new java.awt.Color(255, 255, 255));
         bt_transferir.setText("Transferir -->");
         bt_transferir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -355,56 +355,50 @@ public class principal_ extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel16)
-                .addGap(184, 184, 184)
-                .addComponent(jLabel13)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(bt_transferir)
+                .addGap(48, 48, 48)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(169, 169, 169))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
+                        .addGap(134, 134, 134)
                         .addComponent(jLabel14)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(376, 376, 376)
+                        .addComponent(jLabel15))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(64, 64, 64)
-                .addComponent(bt_transferir)
-                .addGap(83, 83, 83)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addGap(164, 164, 164))))
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel16)
+                        .addGap(214, 214, 214)
+                        .addComponent(jLabel13)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(jLabel13))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(41, 41, 41)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel13)
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel15)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                 .addComponent(bt_transferir)
-                                .addGap(183, 183, 183))))
+                                .addGap(170, 170, 170))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel14)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jd_transferenciasLayout = new javax.swing.GroupLayout(jd_transferencias.getContentPane());
@@ -784,8 +778,9 @@ public class principal_ extends javax.swing.JFrame {
         
         if (jl_jugadores.getSelectedIndex() >= 0) {
             DefaultListModel listajugadores = (DefaultListModel) jl_jugadores.getModel();
-           //((Jugador) listajugadores.get(jl_jugadores.getSelectedIndex())).remove);
+            listajugadores.remove(jl_jugadores.getSelectedIndex());
             jl_jugadores.setModel(listajugadores);
+            JOptionPane.showMessageDialog(jd_transferencias, "Jugador eliminado exitosamente");
         }
         
     }//GEN-LAST:event_jm_eliminarjugadorActionPerformed
@@ -808,7 +803,7 @@ public class principal_ extends javax.swing.JFrame {
             
             if (nodo_precionado.getUserObject() instanceof Equipo) {
                equipo = (Equipo) nodo_precionado.getUserObject();//yaeta
-                int cont =0;
+               int cont =0;
             for (int i = 0; i < raiz.getChildCount(); i++) {
                 DefaultMutableTreeNode hijo = (DefaultMutableTreeNode)raiz.getChildAt(i);
                 for (int j = 0; j < hijo.getChildCount(); j++) {
@@ -835,13 +830,10 @@ public class principal_ extends javax.swing.JFrame {
             }
             
             
-           
             
             
             
-        }
-        else{
-            JOptionPane.showMessageDialog(jd_transferencias, "Debe seleccionar un elemento de la tabla y uno del arbol");
+            
         }
     }//GEN-LAST:event_bt_transferirMouseClicked
 
