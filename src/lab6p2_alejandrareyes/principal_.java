@@ -731,27 +731,35 @@ public class principal_ extends javax.swing.JFrame {
         // modificar jugador
         if (jl_jugadores.getSelectedIndex() >= 0) {
             DefaultListModel listajugadores = (DefaultListModel) jl_jugadores.getModel();
-            String msg = JOptionPane.showInputDialog("Nuevo nombre: " );
-        String msg2 = JOptionPane.showInputDialog("Nueva edad: " );
-        int msg2int = Integer.parseInt(msg2);
-        
-        
-        
-        while (nombretieneNums(msg)==false){
-            JOptionPane.showMessageDialog(jd_transferencias, "El nombre no puede contener numeros");
-            msg = JOptionPane.showInputDialog("Nuevo nombre: " );
-        }
-        
-        while (msg2int<15 || msg2int>45 && edadtieneLetras(msg2)){
-            JOptionPane.showMessageDialog(jd_transferencias, "La edad no puede ser menor de 15 o mayor de 45");
-            msg2 = JOptionPane.showInputDialog("Nueva edad: " );
-            msg2int = Integer.parseInt(msg2);
-        }
-        
-        
-        JOptionPane.showInputDialog("Nueva");
-            ((Jugador) listajugadores.get(jl_jugadores.getSelectedIndex()) ). setNombre(JOptionPane.showInputDialog("nombre"));
+            String msg = JOptionPane.showInputDialog(jd_transferencias, "Nuevo nombre: ");
+            
+            while (nombretieneNums(msg) == false) {
+                JOptionPane.showMessageDialog(jd_transferencias, "El nombre no puede contener numeros");
+                msg = JOptionPane.showInputDialog(jd_transferencias, "Nuevo nombre: ");
+            }
+            
+            ((Jugador) listajugadores.get(jl_jugadores.getSelectedIndex())).setNombre(msg);
+            
+            String msg2 = JOptionPane.showInputDialog(jd_transferencias, "Nueva edad: ");
+            int msg2int = Integer.parseInt(msg2);
+            
+            while (msg2int < 15 || msg2int > 45) {
+                JOptionPane.showMessageDialog(jd_transferencias, "La edad no puede ser menor de 15 o mayor de 45");
+                msg2 = JOptionPane.showInputDialog("Nueva edad: ");
+                msg2int = Integer.parseInt(msg2);
+            }
+            
+            while (edadtieneLetras(msg2)) {
+                JOptionPane.showMessageDialog(jd_transferencias, "La edad no puede ser menor de 15 o mayor de 45");
+                msg2 = JOptionPane.showInputDialog("Nueva edad: ");
+                msg2int = Integer.parseInt(msg2);
+            }
+            
+            
             jl_jugadores.setModel(listajugadores);
+
+            
+           
 
         }
         
@@ -771,7 +779,7 @@ public class principal_ extends javax.swing.JFrame {
     }//GEN-LAST:event_jm_eliminarjugadorActionPerformed
 
     private void bt_transferirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_transferirMouseClicked
-        if (jl_jugadores.getSelectedIndex() >= 0 ){
+        if (jl_jugadores.getSelectedIndex() >= 0 && !(jtree_equipos.isSelectionEmpty())){
             DefaultTreeModel arbolequipos = (DefaultTreeModel) jtree_equipos.getModel();
             DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) arbolequipos.getRoot();
            
@@ -780,17 +788,44 @@ public class principal_ extends javax.swing.JFrame {
             String nombre = ((Jugador) listajugadores.get(jl_jugadores.getSelectedIndex())).getNombre();
             String posicion = ((Jugador) listajugadores.get(jl_jugadores.getSelectedIndex())).getPosicion();
             int edad = ((Jugador) listajugadores.get(jl_jugadores.getSelectedIndex())).getEdad();
-                      
+               
+            
+            int row = jtree_equipos.getClosestRowForLocation(evt.getX(), evt.getY());jtree_equipos.setSelectionRow(row);
+            Object v1 = jtree_equipos.getSelectionPath().getLastPathComponent();
+            nodo_precionado = (DefaultMutableTreeNode) v1;
+            if (nodo_precionado.getUserObject() instanceof Equipo) {
+               equipo = (Equipo) nodo_precionado.getUserObject();
+          
+        }
+            int cont =0;
             for (int i = 0; i < raiz.getChildCount(); i++) {
-                if (raiz.getChildAt(i).toString().equals(posicion)) {
-                    //DefaultMutableTreeNode p = new DefaultMutableTreeNode(new Persona(nombre,edad, nacionalidad));
-                    //((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
+                DefaultMutableTreeNode hijo = (DefaultMutableTreeNode)raiz.getChildAt(i);
+                for (int j = 0; j < hijo.getChildCount(); j++) {
+                    
+                    if (hijo.getChildAt(i).toString().equals(((Equipo)nodo_precionado.getUserObject()).getNombre())) {
+                    DefaultMutableTreeNode jugadortabla = new DefaultMutableTreeNode(new Jugador(nombre, posicion, edad));
+                    ((DefaultMutableTreeNode) hijo.getChildAt(i)).add(jugadortabla);
+                    cont++;
                 } 
+                  
+                }
+                
             }
             
+            if (cont==0){
+                DefaultMutableTreeNode nuevapos = new DefaultMutableTreeNode(posicion);
+                DefaultMutableTreeNode j = new DefaultMutableTreeNode(new Jugador(nombre, posicion, edad));
+                raiz.add(nuevapos);
+                nuevapos.add(j);
+            }
+            
+            arbolequipos.reload();
             
             
             
+        }
+        else{
+            JOptionPane.showMessageDialog(jd_transferencias, "Debe seleccionar un elemento de la tabla y uno del arbol");
         }
     }//GEN-LAST:event_bt_transferirMouseClicked
 
@@ -830,7 +865,7 @@ public class principal_ extends javax.swing.JFrame {
     }
     
     public static boolean nombretieneNums (String cad){
-        String regex = "^[a-z A-Z]";
+        String regex = "[a-zA-Z]+";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(cad);
        return matcher.matches();
@@ -838,7 +873,7 @@ public class principal_ extends javax.swing.JFrame {
     
     
     public static boolean edadtieneLetras (String cad){
-        String regex = "^[1-4] + [1-5]";
+        String regex = "[1-4][1-5]";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(cad);
        return matcher.matches();
@@ -849,6 +884,7 @@ public class principal_ extends javax.swing.JFrame {
     
   Equipo equipo;  
 DefaultMutableTreeNode nodo_precionado;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_agrearequipo;
     private javax.swing.JButton bt_agregarjugador;
